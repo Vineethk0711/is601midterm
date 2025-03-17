@@ -1,7 +1,19 @@
-*.sw*
-.coverage
-.pytest_cache
-*__pycache__
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment
+venv/
+
+# Ignore environment files
 .env
-logs
-venv
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore coverage and test reports
+.coverage
+htmlcov/
+
+# Ignore logs
+*.log
