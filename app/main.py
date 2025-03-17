@@ -82,6 +82,54 @@ class Calculator:
             logger.error(f"Plugin {plugin_name} not found")
         return None
 
+    def repl(self):
+        logger.info("Starting REPL")
+        while True:
+            command = input("Enter a command ('exit' to quit, 'history' to show, 'save' to save history, 'load' to load history, 'clear' to clear history, or plugin usage): ").strip().lower()
+            if command == 'exit':
+                logger.info("Exiting REPL")
+                break
+            elif command == 'history':
+                self.show_history()
+            elif command == 'save':
+                file_name = input("Enter file name to save history: ").strip()
+                self.save_history(file_name)
+            elif command == 'load':
+                file_name = input("Enter file name to load history: ").strip()
+                self.load_history(file_name)
+            elif command == 'clear':
+                self.clear_history()
+            elif command.startswith('plugin'):
+                parts = command.split()
+                plugin_name = parts[1]
+                args = [float(arg) for arg in parts[2:]]
+                result = self.execute_plugin(plugin_name, *args)
+                if result is not None:
+                    print(f"Plugin result: {result}")
+            else:
+                try:
+                    parts = command.split()
+                    if len(parts) == 3:
+                        a, operation, b = float(parts[0]), parts[1], float(parts[2])
+                        if operation == '+':
+                            result = self.add(a, b)
+                        elif operation == '-':
+                            result = self.subtract(a, b)
+                        elif operation == '*':
+                            result = self.multiply(a, b)
+                        elif operation == '/':
+                            result = self.divide(a, b)
+                        else:
+                            print("Unknown operation")
+                            continue
+                        print(f"Result: {result}")
+                        logger.info(f"Performed {operation} on {a} and {b} with result {result}")
+                    else:
+                        print("Invalid command format")
+                except Exception as e:
+                    logger.error(f"Error: {e}")
+                    print(f"Error: {e}")
+
 if __name__ == "__main__":
     calculator = Calculator()
     calculator.repl()  # Start the REPL from the Calculator instance
