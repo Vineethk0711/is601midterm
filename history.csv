@@ -1,0 +1,5 @@
+operation,operand1,operand2,result
+log,32.0,-,5.0
+sqrt,4.0,-,2.0
+power,4.0,-,16.0
+square,6.0,-,36.0
