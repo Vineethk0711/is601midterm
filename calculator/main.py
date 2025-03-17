@@ -63,7 +63,7 @@ class Calculator:
             if filename.endswith('.py') and filename != '__init__.py':
                 plugin_name = filename[:-3]  # Strip off '.py'
                 try:
-                    module = importlib.import_module(f'plugins.{plugin_name}')
+                    module = importlib.import_module(f'calculator.plugins.{plugin_name}')
                     self.plugins[plugin_name] = module
                     logger.info(f"Loaded plugin: {plugin_name}")
                 except Exception as e:
