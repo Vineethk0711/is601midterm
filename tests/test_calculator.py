@@ -3,7 +3,7 @@
 import pytest
 import os
 import pandas as pd
-from calculator.main import Calculator
+from app.main import Calculator
 from unittest.mock import patch
 
 @pytest.fixture
